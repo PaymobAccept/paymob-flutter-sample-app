@@ -1,7 +1,6 @@
 package com.example.paymob_sdk_flutter_bridge
 
 import android.graphics.Color
-import android.media.Image
 import android.util.Log
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

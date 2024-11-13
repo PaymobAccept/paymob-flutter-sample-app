@@ -120,6 +120,8 @@ Redirect into you IOS Folder.
 Place the IOS native sdk in this folder\
 In the Settings of your project, scroll down to 'Frameworks, Libraries, and Embedded Content', then add the xcframework file there.
 
+![Alt text](images/PaymobSDK_Flutter_1.png)
+
 Then in you AppDelegate file.\
 Add the following import
 
@@ -249,24 +251,36 @@ Redirect into the android directory.
 
 Then create a new directory there calles 'libs' and place the Android SDK there
 
+![Alt text](images/PaymobSDK_Flutter_2.png)
 
 Inside the root android directory, open the build.gradle,\
-then add the following code inside the allprojects{repositories{
+then add the following code inside
 
 ```kotlin
+allprojects {
+    repositories {
+        ...
         maven {
             url = rootProject.projectDir.toURI().resolve("libs")
         }
         maven {
             url = uri("https://jitpack.io")
         }
+    }
+}
 
 ```
+should look like this
+![Alt text](images/PaymobSDK_Flutter_3.png)
+
 
 Then open the settings.gradle,\
-then add the following code inside the allprojects{repositories{
+then add the following code
 
 ```kotlin
+pluginManagement {
+    repositories {
+        ...
         maven {
             url = rootProject.projectDir.toURI().resolve("libs")
         }
@@ -275,6 +289,10 @@ then add the following code inside the allprojects{repositories{
         }
 
 ```
+should look like this
+![Alt text](images/PaymobSDK_Flutter_4.png)
+
+
 Inside the app directory, open the build.gradle file and add the following
 
 ```kotlin
@@ -287,11 +305,24 @@ android {
     buildFeatures { dataBinding = true }
 }
 ```
+should looke like this
+![Alt text](images/PaymobSDK_Flutter_5.png)
+
 
 Then in the MainActivity
 add the following:
 
 ```kotlin
+import android.graphics.Color
+import android.util.Log
+import io.flutter.plugin.common.MethodCall
+import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler
+import io.flutter.plugin.common.MethodChannel.Result
+import io.flutter.embedding.android.FlutterActivity
+import android.os.Bundle
+import android.widget.Toast
+
 import com.paymob.paymob_sdk.PaymobSdk
 import com.paymob.paymob_sdk.domain.model.CreditCard
 import com.paymob.paymob_sdk.domain.model.SavedCard
@@ -395,9 +426,9 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
         SDKResult?.success("Pending")
     }
 
+     override fun onMethodCall(call: MethodCall, result: Result) {
+    }
+
 }
 
 ```
-
-
-

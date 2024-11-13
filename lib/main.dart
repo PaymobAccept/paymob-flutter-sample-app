@@ -75,7 +75,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   static const methodChannel = MethodChannel('paymob_sdk_flutter');
 
   // Method to call native code
@@ -103,15 +102,15 @@ class _MyHomePageState extends State<MyHomePage> {
       print('Native result: $result');
       switch (result) {
         case 'Successfull':
-          print('Transaction Successfull');
+          print('Transaction Successfull Dart');
           // Do something for accepted
           break;
         case 'Rejected':
-          print('Transaction Rejected');
+          print('Transaction Rejected Dart');
           // Do something for rejected
           break;
         case 'Pending':
-          print('Transaction Pending');
+          print('Transaction Pending Dart');
           // Do something for pending
           break;
         default:
@@ -147,12 +146,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: ElevatedButton(
           onPressed: () {
-            _payWithPaymob( "egy_pk_test_jbtqjbZUZpcvIjvMSHrAXVQ2dFVsS0xi",
-                "egy_csk_test_14779df7cfe1a5cd0e83a697879297fc",
+            _payWithPaymob( "place public key here",
+                "place client secret key here",
                 savedCard: SavedBankCard(token: "98aed441d8d03e4abd5e323b6fae1c579499b4145886d31d786da65e", maskedPanNumber: "2346", cardType: CardType.MasterCard.name),
                 appName: "hello",
                 buttonTextColor: Colors.red,
-              showSaveCard: false
+              showSaveCard: false,
+              saveCardDefault: true
             );
           },
           child: Text('Pay With Paymob'),
