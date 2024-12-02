@@ -146,11 +146,12 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: ElevatedButton(
           onPressed: () {
-            _payWithPaymob( "place public key here",
-                "place client secret key here",
-                savedCard: SavedBankCard(token: "98aed441d8d03e4abd5e323b6fae1c579499b4145886d31d786da65e", maskedPanNumber: "2346", cardType: CardType.MasterCard.name),
+            _payWithPaymob( "Place Public Key Here",
+                "Place Client Secret Key Here",
+                savedCard: null,
                 appName: "hello",
                 buttonTextColor: Colors.red,
+              buttonBackgroundColor: Colors.blue,
               showSaveCard: false,
               saveCardDefault: true
             );
