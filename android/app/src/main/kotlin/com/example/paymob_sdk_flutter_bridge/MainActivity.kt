@@ -101,11 +101,6 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
     }
 
     //PaymobSDK Return Values
-    override fun onSuccess() {
-        //If The Payment is Accepted
-        SDKResult?.success("Successfull")
-    }
-
     override fun onFailure() {
         //If The Payment is declined
         SDKResult?.success("Rejected")
@@ -113,6 +108,11 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
     override fun onPending() {
         //If The Payment is pending
         SDKResult?.success("Pending")
+    }
+
+    override fun onSuccess(payResponse: HashMap<String, String?>) {
+        //If The Payment is successful
+        SDKResult?.success("Successfull")
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {

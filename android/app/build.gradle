@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation("com.paymob.sdk:Paymob-SDK:1.5.3-alpha")
+    implementation("com.paymob.sdk:Paymob-SDK:1.5.9")
 }
 
 android {

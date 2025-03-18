@@ -106,7 +106,7 @@ extension AppDelegate: PaymobSDKDelegate{
         self.SDKResult?("Rejected")
     }
     
-    public func transactionAccepted() {
+    func transactionAccepted(transactionDetails: [String : Any]) {
         self.SDKResult?("Successfull")
     }
     

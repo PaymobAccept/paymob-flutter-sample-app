@@ -357,6 +357,7 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
 
         val savedBankCard = arguments?.get("savedBankCard") as? Map<String, Any>
         var savedCard: SavedCard? = null
+        var savedCardsArray: Array<SavedCard> = arrayOf()
         var buttonBackgroundColor: Int? = null
         var buttonTextColor: Int? = null
 
@@ -373,7 +374,8 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
             val cardType = savedBankCard["cardType"] as? String ?: ""
             val creditCard = CreditCard.valueOf(cardType.uppercase())
 
-            savedCard = SavedCard(maskedPan = "**** **** **** " + maskedPan, savedCardToken = token, creditCard = creditCard )
+            savedCard = SavedCard(maskedPan = "**** **** **** " + maskedPan, token = token, creditCard = creditCard )
+            savedCardsArray = arrayOf(savedCard)
         }
 
         if (buttonTextColorData != null){
@@ -399,24 +401,19 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
             clientSecret = clientSecret.toString(),
             publicKey = publicKey.toString(),
             paymobSdkListener = this,
-            savedCard = savedCard//Optional Field if you have a saved card
+            savedCards = savedCardsArray//Optional Field if you have a saved card
         ).setButtonBackgroundColor(buttonBackgroundColor ?: Color.BLACK)
             .setButtonTextColor(buttonTextColor ?: Color.WHITE)
             .setAppName(appName)
             .isAbleToSaveCard(showSaveCard ?: true)
             .isSavedCardCheckBoxCheckedByDefault(saveCardDefault ?: false)
-        .build()
+            .build()
 
         paymobsdk.start()
         return
     }
 
     //PaymobSDK Return Values
-    override fun onSuccess() {
-        //If The Payment is Accepted
-        SDKResult?.success("Successfull")
-    }
-
     override fun onFailure() {
         //If The Payment is declined
         SDKResult?.success("Rejected")
@@ -426,9 +423,13 @@ class MainActivity: FlutterActivity(), MethodCallHandler, PaymobSdkListener {
         SDKResult?.success("Pending")
     }
 
-     override fun onMethodCall(call: MethodCall, result: Result) {
+    override fun onSuccess(payResponse: HashMap<String, String?>) {
+        //If The Payment is successful
+        SDKResult?.success("Successfull")
     }
 
+    override fun onMethodCall(call: MethodCall, result: Result) {
+    }
 }
 
 ```

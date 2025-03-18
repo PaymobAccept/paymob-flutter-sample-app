@@ -146,8 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: ElevatedButton(
           onPressed: () {
-            _payWithPaymob( "Place Public Key Here",
-                "Place Client Secret Key Here",
+            _payWithPaymob( "egy_pk_live_L4acc6uoPrt6ijms16NbUmZmW8Mdrqck",
+                "egy_csk_live_dfcf850ef3a771e513339ed91e08dc59",
                 savedCard: null,
                 appName: "hello",
                 buttonTextColor: Colors.red,

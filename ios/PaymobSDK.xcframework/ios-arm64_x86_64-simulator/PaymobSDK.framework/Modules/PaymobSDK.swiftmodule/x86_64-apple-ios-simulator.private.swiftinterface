@@ -701,7 +701,7 @@ public class RadioCheckboxBaseContainer<T> where T : RadioCheckboxBaseButton {
 }
 public protocol PaymobSDKDelegate : AnyObject {
   func transactionRejected()
-  func transactionAccepted()
+  func transactionAccepted(transactionDetails: [Swift.String : Any])
   func transactionPending()
 }
 public enum FPNCountryCode : Swift.String {
